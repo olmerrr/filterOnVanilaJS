@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container-app">
+    <header>
+      <nav>
+        <ul class="nav-menu">
+          <li data-f="all" class="nav-menu__item text-all">all</li>
+          <li data-f="alizarin" class="nav-menu__item text-alizarin">alizarin</li>
+          <li data-f="misteria" class="nav-menu__item text-misteria">misteria</li>
+          <li data-f="emerland" class="nav-menu__item text-emerland">emerland</li>
+          <li data-f="sunflower" class="nav-menu__item text-sunflower">sunflower</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="block-cover">
+        <div class="box alizarin"></div>
+        <div class="box misteria"></div>
+        <div class="box emerland"></div>
+        <div class="box sunflower"></div>
+        <div class="box alizarin"></div>
+        <div class="box misteria"></div>
+        <div class="box sunflower"></div>
+        <div class="box alizarin"></div>
+        <div class="box misteria"></div>
+        <div class="box sunflower"></div>
+        <div class="box alizarin"></div>
+      </div>
+    </main>
+  </div>
+  <style>
+    body {
+      background: #000;
+    }
+
+    .container-app {
+      max-width: 1200px;
+      font-size: 16px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    .nav-menu {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      flex-wrap: wrap;
+      font-size: 18px;
+      color: aliceblue;
+      text-decoration: none;
+      list-style: none;
+      text-transform: uppercase;
+    }
+
+    .nav-menu__item {
+      cursor: pointer;
+      margin-right: 20px;
+    }
+
+    .text-alizarin {
+      color: red;
+    }
+
+    .text-misteria {
+      color: blue;
+    }
+
+    .text-emerland {
+      color: green;
+    }
+
+    .text-sunflower {
+      color: yellow;
+    }
+
+    .block-cover {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      border-radius: 4px;
+      margin: 10px;
+      padding: 20px 40px;
+    }
+
+    .alizarin {
+      border: 3px solid red;
+    }
+
+    .misteria {
+      border: 3px solid blue;
+    }
+
+    .emerland {
+      border: 3px solid green;
+
+    }
+
+    .sunflower {
+      border: 3px solid yellow;
+
+    }
+
+    .hide {
+      opacity: 1;
+      animation: a1 2s forwards;
+    }
+
+    @keyframes a1 {
+      to {
+        opacity: 0;
+        min-height: 0;
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+        border: 0;
+
+      }
+    }
+  </style>
+  <script>
+    const filter = document.querySelectorAll('.box');
+    //ловлю все классы box
+
+    document.querySelector('nav').addEventListener('click', (event) => {
+      if (event.target.tagName !== 'LI') return false;
+      // отслеживаю клик в nav
+      let filterClass = event.target.dataset['f'];
+      // console.log(filterClass);
+      filter.forEach(element => {
+
+        if (!element.classList.contains(filterClass) && filterClass !== 'all') {
+          element.classList.add('hide')
+        } else {
+          element.classList.remove('hide');
+        }
+      });
+    })
+  </script>
+</body>
+
+</html>
